@@ -31,7 +31,8 @@ func (a *auth) Handle() {
 
 func (a *auth) login(c echo.Context) error {
 	userID := fmt.Sprint(c.Get("firebase_user_id"))
-	return a.usecase.GenarateToken(usecase.LoginRequest{UserID: userID}, presenter.NewAuth(c))
+	request := usecase.LoginRequest{UserID: userID}
+	return a.usecase.GenarateToken(request, presenter.NewAuth(c))
 }
 
 type loginRequest struct {
