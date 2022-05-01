@@ -6,6 +6,7 @@ require (
 	firebase.google.com/go/v4 v4.8.0
 	github.com/google/wire v0.5.0
 	github.com/labstack/echo/v4 v4.7.2
+	github.com/oklog/ulid/v2 v2.0.2
 	google.golang.org/api v0.77.0
 )
 
