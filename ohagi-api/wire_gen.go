@@ -7,6 +7,7 @@
 package main
 
 import (
+	"github.com/haton14/ohagi-dinner/ohagi-api/domain"
 	"github.com/haton14/ohagi-dinner/ohagi-api/handler"
 	"github.com/haton14/ohagi-dinner/ohagi-api/usecase"
 	"github.com/labstack/echo/v4"
@@ -14,8 +15,8 @@ import (
 
 // Injectors from wire.go:
 
-func InitializeApp(e *echo.Echo) App {
-	auth := usecase.NewAuth()
+func InitializeApp(e *echo.Echo, petTokenMaker domain.PetTokenMaker) App {
+	auth := usecase.NewAuth(petTokenMaker)
 	handlerAuth := handler.NewAuth(e, auth)
 	app := NewApp(e, handlerAuth)
 	return app

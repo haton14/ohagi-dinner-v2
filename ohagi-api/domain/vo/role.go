@@ -1,21 +1,21 @@
 package vo
 
 type Role struct {
-	value role
+	value RoleType
 }
 
-type role string
+type RoleType string
 
-const OwenrRole, WritableRole, ReadonlyRole role = "owner", "writable", "readonly"
+const OwenrRole, WritableRole, ReadonlyRole RoleType = "owner", "writable", "readonly"
 
-func NewRole(value role) (Role, error) {
+func NewRole(value RoleType) (Role, error) {
 	if value != OwenrRole && value != WritableRole && value != ReadonlyRole {
 		return Role{}, ErrEnum
 	}
 	return Role{value: value}, nil
 }
 
-func (r Role) Value() role {
+func (r Role) Value() RoleType {
 	return r.value
 }
 

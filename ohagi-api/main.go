@@ -1,12 +1,13 @@
 package main
 
 import (
+	"github.com/haton14/ohagi-dinner/ohagi-api/domain"
 	"github.com/haton14/ohagi-dinner/ohagi-api/handler"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
-	app := InitializeApp(echo.New())
+	app := InitializeApp(echo.New(), domain.NewPetTokenMaker("", ""))
 	app.Run()
 }
 

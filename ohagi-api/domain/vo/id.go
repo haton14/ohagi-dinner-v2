@@ -6,17 +6,24 @@ import (
 	"github.com/oklog/ulid/v2"
 )
 
-type ID struct {
+type PetID struct {
 	value string
 }
 
-func NewID(currentTime CurrentTime) ID {
-	t := currentTime.Value()
-	entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
-	id := ulid.MustNew(ulid.Timestamp(t), entropy)
-	return ID{value: id.String()}
+func GeneratePetID(currentTime CurrentTime) PetID {
+	return NewPetID(generateID(currentTime))
 }
 
-func (i ID) Value() string {
-	return i.value
+func NewPetID(id string) PetID {
+	return PetID{value: id}
+}
+
+func (p PetID) Value() string {
+	return p.value
+}
+
+func generateID(currentTime CurrentTime) string {
+	t := currentTime.Value()
+	entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
+	return ulid.MustNew(ulid.Timestamp(t), entropy).String()
 }
